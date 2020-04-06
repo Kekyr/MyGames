@@ -1,0 +1,2 @@
+1. Create new BIG paddle
+2. Create new ball

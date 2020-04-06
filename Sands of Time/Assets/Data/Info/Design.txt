@@ -1,0 +1,3 @@
+Color pallette:DB32
+New name of the game is "Sands of time"
+Style of the game is Egyptian architecture and etc.
