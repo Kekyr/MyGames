@@ -103,7 +103,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 4
+  m_Constraints: 0
 --- !u!58 &6080156300155611690
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -132,7 +132,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b04de31ac18745041a8621bd45e54639, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  paddle1: {fileID: 9022459616988786475, guid: b300730a19bfaf64aacbd4ac9cab811d, type: 3}
+  paddle1: {fileID: 0}
   xPush: 2
   yPush: 20
   ballSounds:

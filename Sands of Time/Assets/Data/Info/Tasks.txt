@@ -1,14 +1,8 @@
 1. Polish the game: 
-1)tune the ball gravity and add buttons for smartphone.
+1) add buttons for smartphone.
 2)draw new sprite for: background, block and ball
 3)create new levels
 2. Upload game on site
 3. Show your friends, family
 
-Tune the ball:
-1) Make ball and walls imperfect
-2) Spin our ball (Need to add friction(i.e. material) on walls, blocks)
-3) Add more randomness in velocity
-4) Change gravity to 0.01
 
-JUST WATCH 8:34 INSTRUCTOR HANGOUT
