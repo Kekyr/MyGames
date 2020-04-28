@@ -1,14 +1,15 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Level : MonoBehaviour
 {
     //parameters
     [SerializeField] int breakableBlocks; //Serialized for debugging purposes
+    [SerializeField] Paddle paddle;
+    
 
     // cached reference
     SceneLoader sceneLoader;
+    
 
     private void Start()
     {
@@ -22,9 +23,16 @@ public class Level : MonoBehaviour
     public void BlockDestroyed()
     {
         breakableBlocks--;
-        if(breakableBlocks <=0)
+        if (breakableBlocks <= 0)
         {
-            sceneLoader.LoadNextScene();
+            Invoke("Win", 1f);
         }
     }
+
+    void Win()
+    {
+        sceneLoader.LoadNextScene();
+        paddle.transform.position = new Vector2(8, 0.11f);
+    }
+  
 }

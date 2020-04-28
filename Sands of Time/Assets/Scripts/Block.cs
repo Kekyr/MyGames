@@ -1,19 +1,16 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Block : MonoBehaviour
 {
     //config params
     [SerializeField] AudioClip breakSound;
     [SerializeField] GameObject blockSparklesVFX;
-   
     [SerializeField] Sprite[] hitSprites;
 
     // cached reference
     Level level;
     GameSession gameSession;
+    SpriteRenderer spriteRenderer;
 
     // state variables
     [SerializeField] int timesHit; //TODO only serialized for debug purposes
@@ -21,12 +18,13 @@ public class Block : MonoBehaviour
     private void Start()
     {
         gameSession = FindObjectOfType<GameSession>();
+        level = FindObjectOfType<Level>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
         CountBreakableBlocks();
     }
 
     private void CountBreakableBlocks()
     {
-        level = FindObjectOfType<Level>();
         if (tag == "Breakable")
         {
             level.CountBlocks();
@@ -60,7 +58,7 @@ public class Block : MonoBehaviour
         int spriteIndex = timesHit - 1;
         if (hitSprites[spriteIndex] != null)
         {
-            GetComponent<SpriteRenderer>().sprite = hitSprites[spriteIndex];
+            spriteRenderer.sprite = hitSprites[spriteIndex];
         }
         else
         {

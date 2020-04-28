@@ -132,7 +132,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b04de31ac18745041a8621bd45e54639, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  paddle1: {fileID: 0}
+  paddle1: {fileID: 9022459616988786475, guid: b300730a19bfaf64aacbd4ac9cab811d, type: 3}
   xPush: 2
   yPush: 20
   ballSounds:

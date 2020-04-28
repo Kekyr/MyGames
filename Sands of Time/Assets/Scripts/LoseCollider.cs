@@ -1,12 +1,17 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine.SceneManagement;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class LoseCollider : MonoBehaviour
 {
+    //cached reference
+    GameSession gameSession;
+
+    private void Start()
+    {
+        gameSession = FindObjectOfType<GameSession>();
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        SceneManager.LoadScene("Game Over");
+        gameSession.LoseLive();
     }
 }

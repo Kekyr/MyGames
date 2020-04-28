@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Paddle : MonoBehaviour
 {
@@ -8,10 +6,13 @@ public class Paddle : MonoBehaviour
     [SerializeField] float minX = 0.49f;
     [SerializeField] float maxX = 15.4710f;
     [SerializeField] float screenWidthInUnits = 16f;
+    [SerializeField] Level level;
 
     //cached references
     GameSession theGameSession;
     Ball theBall;
+    
+
 
     void Start()
     {

@@ -1,11 +1,8 @@
 ﻿using UnityEngine;
 
-
-
 public class Ball : MonoBehaviour
 {
-    // config params
-    [SerializeField] Paddle paddle1;
+    // config params    
     [SerializeField] float xPush = 2f;
     [SerializeField] float yPush = 15f;
     [SerializeField] AudioClip[] ballSounds;
@@ -19,12 +16,14 @@ public class Ball : MonoBehaviour
     //Cached component references
     AudioSource myAudioSource;
     Rigidbody2D myRigidBody2D;
-    
+    Paddle paddle;
+
     private void Start()
     {
-        paddleToBallVector = transform.position - paddle1.transform.position;
         myAudioSource = GetComponent<AudioSource>();
         myRigidBody2D = GetComponent<Rigidbody2D>();
+        paddle = FindObjectOfType<Paddle>();
+        paddleToBallVector = transform.position - paddle.transform.position;
     }
 
     
@@ -48,7 +47,7 @@ public class Ball : MonoBehaviour
 
     private void LockBallToPaddle()
     {
-        Vector2 paddlePos = new Vector2(paddle1.transform.position.x, paddle1.transform.position.y);
+        Vector2 paddlePos = new Vector2(paddle.transform.position.x, paddle.transform.position.y);
         transform.position = paddlePos + paddleToBallVector;
     }
 
