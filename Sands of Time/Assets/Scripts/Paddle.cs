@@ -7,6 +7,7 @@ public class Paddle : MonoBehaviour
     [SerializeField] float maxX = 15.4710f;
     [SerializeField] float screenWidthInUnits = 16f;
     [SerializeField] Level level;
+    Vector2 paddlePos=new Vector2(8,0.11f);
 
     //cached references
     GameSession theGameSession;
@@ -22,13 +23,24 @@ public class Paddle : MonoBehaviour
 
     void Update()
     {
-        Vector2 paddlePos = new Vector2(transform.position.x, transform.position.y);
+        #if UNITY_STANDALONE || UNITY_WEBPLAYER
+        
+        paddlePos = new Vector2(transform.position.x, transform.position.y);
         paddlePos.x = Mathf.Clamp(GetXPos(), minX, maxX);
         transform.position = paddlePos;
+        
+        #else
+
+        paddlePos.x = Mathf.Clamp(paddlePos.x, minX, maxX);
+        transform.position = paddlePos;
+
+        #endif
     }
+
 
     private float GetXPos()
     {
+        
         if(theGameSession.IsAutoPlayEnabled())
         {
             return theBall.transform.position.x;
@@ -37,5 +49,18 @@ public class Paddle : MonoBehaviour
         {
             return Input.mousePosition.x / Screen.width * 16;
         }
+
+    }
+
+    public void MoveRight()
+    {
+        paddlePos.x += 2;
+        
+    }
+
+    public void MoveLeft ()
+    {
+        paddlePos.x -= 2;
+        
     }
 }
