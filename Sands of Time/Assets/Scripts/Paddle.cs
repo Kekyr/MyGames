@@ -7,11 +7,13 @@ public class Paddle : MonoBehaviour
     [SerializeField] float maxX = 15.4710f;
     [SerializeField] float screenWidthInUnits = 16f;
     [SerializeField] Level level;
-    Vector2 paddlePos=new Vector2(8,0.11f);
+    public Vector3 paddlePos=new Vector3(8,0.11f,0);
+    
 
     //cached references
     GameSession theGameSession;
     Ball theBall;
+    Rigidbody2D rb;
     
 
 
@@ -19,24 +21,24 @@ public class Paddle : MonoBehaviour
     {
         theGameSession = FindObjectOfType<GameSession>();
         theBall = FindObjectOfType<Ball>();
+        rb = GetComponent<Rigidbody2D>();
     }
 
+    #if UNITY_STANDALONE || UNITY_WEBPLAYER
     void Update()
     {
-        #if UNITY_STANDALONE || UNITY_WEBPLAYER
-        
-        paddlePos = new Vector2(transform.position.x, transform.position.y);
+        paddlePos = new Vector3(transform.position.x, transform.position.y,0);
         paddlePos.x = Mathf.Clamp(GetXPos(), minX, maxX);
         transform.position = paddlePos;
-        
-        #else
-
-        paddlePos.x = Mathf.Clamp(paddlePos.x, minX, maxX);
-        transform.position = paddlePos;
-
-        #endif
     }
-
+    #else
+    void FixedUpdate()
+    {
+        //paddlePos.x = Mathf.Clamp(paddlePos.x, minX, maxX);
+        paddlePos = paddlePos * theGameSession.gameSpeed * Time.deltaTime;
+        rb.MovePosition(rb.transform.position + paddlePos);
+    }
+    #endif
 
     private float GetXPos()
     {
@@ -55,12 +57,12 @@ public class Paddle : MonoBehaviour
     public void MoveRight()
     {
         paddlePos.x += 2;
-        
+
     }
 
-    public void MoveLeft ()
+    public void MoveLeft()
     {
         paddlePos.x -= 2;
-        
+
     }
 }

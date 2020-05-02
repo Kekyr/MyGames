@@ -32,17 +32,28 @@ public class Ball : MonoBehaviour
         if (!hasStarted)
         {
             LockBallToPaddle();
+            #if UNITY_STANDALONE || UNITY_WEBPLAYER
             LaunchOnMouseClick();
+            #endif
         }
     }
 
     private void LaunchOnMouseClick()
     {
-        if(Input.GetMouseButtonDown(0))
+        #if UNITY_STANDALONE || UNITY_WEBPLAYER
+        if (Input.GetMouseButtonDown(0))
         {
             hasStarted = true;
             myRigidBody2D.velocity = new Vector2(xPush, yPush);
         }
+        #endif
+        
+    }
+
+    public void LaunchOnButtonClick()
+    {
+        hasStarted = true;
+        myRigidBody2D.velocity = new Vector2(xPush, yPush);
     }
 
     private void LockBallToPaddle()

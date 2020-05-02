@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 public class GameSession : MonoBehaviour
 {
     // config params
-    [Range(0.1f,10f)][SerializeField] float gameSpeed = 1f;
+    [Range(0.1f,10f)] public float gameSpeed = 0.8f;
     [SerializeField] int scorePerBlockDestroyed = 83;
     [SerializeField] TextMeshProUGUI scoreText;
     [SerializeField] bool isAutoPlayEnabled;
