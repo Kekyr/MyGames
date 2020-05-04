@@ -7,6 +7,7 @@ public class HoldDownButtons : MonoBehaviour
     public bool isRacePressed = false;
     public bool isBrakePressed = false;
     [SerializeField] Paddle paddle;
+    GameObject button;
 
 
 
@@ -14,20 +15,28 @@ public class HoldDownButtons : MonoBehaviour
     {
         if(isRacePressed)
         {
-            paddle.paddlePos.x -= 2;
+            if (button.name == "Left Button")
+            {
+                paddle.paddlePos.x -= 2;
+            }
+            else
+            {
+                paddle.paddlePos.x += 2;
+            }
         }
-        else if (!isRacePressed)
-        {
-
-        }
+        
     }
 
-    public void onPointerDownRaceButton()
+    public void onPointerDownRaceButton(GameObject but)
     {
+        button = but;
         isRacePressed=true;
     }
-    public void onPointerUpRaceButton()
+    public void onPointerUpRaceButton(GameObject but)
     {
+        button = but;
         isRacePressed = false;
     }
+
+
 }

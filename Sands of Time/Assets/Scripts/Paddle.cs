@@ -34,15 +34,14 @@ public class Paddle : MonoBehaviour
     #else
     void FixedUpdate()
     {
-        //paddlePos.x = Mathf.Clamp(paddlePos.x, minX, maxX);
         paddlePos = paddlePos * theGameSession.gameSpeed * Time.deltaTime;
+        if(rb.transform.position.x+paddlePos.x>minX && rb.transform.position.x + paddlePos.x<maxX)
         rb.MovePosition(rb.transform.position + paddlePos);
     }
     #endif
 
     private float GetXPos()
     {
-        
         if(theGameSession.IsAutoPlayEnabled())
         {
             return theBall.transform.position.x;
@@ -51,18 +50,7 @@ public class Paddle : MonoBehaviour
         {
             return Input.mousePosition.x / Screen.width * 16;
         }
-
     }
 
-    public void MoveRight()
-    {
-        paddlePos.x += 2;
-
-    }
-
-    public void MoveLeft()
-    {
-        paddlePos.x -= 2;
-
-    }
+   
 }
