@@ -1,1 +1,2 @@
-Add button apply to prefabs.
+1. Lives don't display 
+2. Make paddle longer

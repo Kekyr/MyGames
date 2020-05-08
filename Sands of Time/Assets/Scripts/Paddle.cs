@@ -34,9 +34,19 @@ public class Paddle : MonoBehaviour
     #else
     void FixedUpdate()
     {
-        paddlePos = paddlePos * theGameSession.gameSpeed * Time.deltaTime;
-        if(rb.transform.position.x+paddlePos.x>minX && rb.transform.position.x + paddlePos.x<maxX)
-        rb.MovePosition(rb.transform.position + paddlePos);
+        if (!theGameSession.IsAutoPlayEnabled())
+        {
+            paddlePos = paddlePos * theGameSession.gameSpeed * Time.deltaTime;
+            if (rb.transform.position.x + paddlePos.x > minX && rb.transform.position.x + paddlePos.x < maxX)
+            {
+                rb.MovePosition(rb.transform.position + paddlePos);
+            }
+        }
+        else
+        {
+            paddlePos.x = theBall.transform.position.x;
+            rb.transform.position =paddlePos;
+        }
     }
     #endif
 
@@ -44,6 +54,7 @@ public class Paddle : MonoBehaviour
     {
         if(theGameSession.IsAutoPlayEnabled())
         {
+            theBall = FindObjectOfType<Ball>();
             return theBall.transform.position.x;
         }
         else

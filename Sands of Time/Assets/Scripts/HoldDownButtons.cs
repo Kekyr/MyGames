@@ -7,9 +7,11 @@ public class HoldDownButtons : MonoBehaviour
     public bool isRacePressed = false;
     public bool isBrakePressed = false;
     [SerializeField] Paddle paddle;
+    [SerializeField] int paddleSpeed = 12;
     GameObject button;
+    Ball theBall;
 
-
+    
 
     void Update()
     {
@@ -17,11 +19,11 @@ public class HoldDownButtons : MonoBehaviour
         {
             if (button.name == "Left Button")
             {
-                paddle.paddlePos.x -= 2;
+                paddle.paddlePos.x -= paddleSpeed;
             }
             else
             {
-                paddle.paddlePos.x += 2;
+                paddle.paddlePos.x += paddleSpeed;
             }
         }
         
@@ -38,5 +40,10 @@ public class HoldDownButtons : MonoBehaviour
         isRacePressed = false;
     }
 
-
+    public void LaunchOnButtonClick()
+    {
+        theBall = FindObjectOfType<Ball>();
+        theBall.hasStarted = true;
+        theBall.myRigidBody2D.velocity = new Vector2(theBall.xPush, theBall.yPush);
+    }
 }

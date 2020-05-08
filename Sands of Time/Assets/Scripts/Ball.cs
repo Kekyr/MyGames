@@ -3,19 +3,20 @@
 public class Ball : MonoBehaviour
 {
     // config params    
-    [SerializeField] float xPush = 2f;
-    [SerializeField] float yPush = 15f;
+    public float xPush = 2f;
+    public float yPush = 15f;
     [SerializeField] AudioClip[] ballSounds;
     [SerializeField] float randomFactor = 1.2f;
 
 
     // state
+    public bool hasStarted = false;
     private Vector2 paddleToBallVector;
-    private bool hasStarted = false;
+
 
     //Cached component references
+    public Rigidbody2D myRigidBody2D;
     AudioSource myAudioSource;
-    Rigidbody2D myRigidBody2D;
     Paddle paddle;
 
     private void Start()
@@ -50,16 +51,13 @@ public class Ball : MonoBehaviour
         
     }
 
-    public void LaunchOnButtonClick()
-    {
-        hasStarted = true;
-        myRigidBody2D.velocity = new Vector2(xPush, yPush);
-    }
+    
 
     private void LockBallToPaddle()
     {
         Vector2 paddlePos = new Vector2(paddle.transform.position.x, paddle.transform.position.y);
         transform.position = paddlePos + paddleToBallVector;
+        transform.rotation = new Quaternion(0, 0, 0, 0);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

@@ -46,3 +46,4 @@ MonoBehaviour:
   isRacePressed: 0
   isBrakePressed: 0
   paddle: {fileID: 0}
+  paddleSpeed: 10
