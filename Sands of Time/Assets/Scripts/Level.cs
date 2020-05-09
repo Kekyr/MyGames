@@ -32,7 +32,7 @@ public class Level : MonoBehaviour
     void Win()
     {
         sceneLoader.LoadNextScene();
-        paddle.transform.position = new Vector2(8, 0.11f);
+        paddle.transform.position = new Vector2(8, 0.2f);
     }
   
 }

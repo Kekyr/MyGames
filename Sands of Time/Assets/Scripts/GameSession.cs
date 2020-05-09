@@ -62,7 +62,7 @@ public class GameSession : MonoBehaviour
         else
         {
             Destroy(lives[currentLives]);
-            paddle.transform.position = new Vector2(8,0.11f);
+            paddle.transform.position = new Vector2(8,0.2f);
             GameObject theBall = Instantiate(ball, new Vector2(8,0.55f), transform.rotation); 
             currentScore = 0;
             scoreText.text = currentScore.ToString();

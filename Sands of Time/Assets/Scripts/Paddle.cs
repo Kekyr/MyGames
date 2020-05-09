@@ -7,7 +7,7 @@ public class Paddle : MonoBehaviour
     [SerializeField] float maxX = 15.4710f;
     [SerializeField] float screenWidthInUnits = 16f;
     [SerializeField] Level level;
-    public Vector3 paddlePos=new Vector3(8,0.11f,0);
+    public Vector3 paddlePos=new Vector3(8,0.2f,0);
     
 
     //cached references
@@ -36,7 +36,7 @@ public class Paddle : MonoBehaviour
     {
         if (!theGameSession.IsAutoPlayEnabled())
         {
-            paddlePos = paddlePos * theGameSession.gameSpeed * Time.deltaTime;
+            paddlePos = paddlePos * theGameSession.gameSpeed * Time.fixedDeltaTime;
             if (rb.transform.position.x + paddlePos.x > minX && rb.transform.position.x + paddlePos.x < maxX)
             {
                 rb.MovePosition(rb.transform.position + paddlePos);
